@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Animal Cards</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+        color: #0077cc;
+      }
+
+      .form-container {
+        text-align: center;
+        margin: 20px auto;
+      }
+
+      input, select, button {
+        padding: 10px;
+        margin: 5px;
+        width: 200px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        background-color: #0077cc;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background-color: #005fa3;
+      }
+
+      /* Container flex style */
+      #animal-container {
+        display: flex;
+        flex-wrap: wrap; /* Yonma-yon chiqadi, joy yetmasa pastga tushadi */
+        justify-content: center;
+        gap: 20px; /* Kartalar orasidagi bo'shliq */
+        margin: 20px;
+      }
+
+      .animal-card {
+        width: 250px;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .animal-image {
+        width: 100px;
+        height: 100px;
+        margin: 10px auto;
+        border-radius: 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border: 2px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      href="file:///C:/Users/user/OneDrive/Ishchi%20stol/Cowork/IT/Virtual%20filio/html/index.html#portfolio"
+      style="position: absolute; top: 10px; left: 10px"
+    >
+      <img src="left-arrow.png" alt="Back" style="width: 50px; height: 50px" />
+    </a>
+    <h1>Dynamic Animal Information</h1>
+
+    <!-- Input Form -->
+    <div class="form-container">
+      <input type="text" id="animalName" placeholder="Animal Name" />
+      <input type="number" id="animalAge" placeholder="Animal Age" />
+      <select id="animalColor">
+        <option value="ff0000">Red</option>
+        <option value="0000ff">Blue</option>
+        <option value="008000">Green</option>
+        <option value="ffff00">Yellow</option>
+        <option value="ffc0cb">Pink</option>
+        <option value="800080">Purple</option>
+        <option value="ffa500">Orange</option>
+      </select>
+      <select id="animalType">
+        <option value="Cat">Cat</option>
+        <option value="Fish">Fish</option>
+        <option value="Bird">Bird</option>
+      </select>
+      <input type="text" id="ownerName" placeholder="Owner Name" />
+      <button onclick="addAnimal()">Add Animal</button>
+    </div>
+
+    <!-- Output Container -->
+    <div id="animal-container"></div>
+
+    <script>
+      const animals = [];
+      const container = document.getElementById("animal-container");
+
+      function addAnimal() {
+        // Inputlardan qiymatlarni olish
+        const name = document.getElementById("animalName").value;
+        const age = document.getElementById("animalAge").value;
+        const color = document.getElementById("animalColor").value;
+        const type = document.getElementById("animalType").value;
+        const owner = document.getElementById("ownerName").value;
+
+        // Kiritilgan ma'lumotni tekshirish
+        if (!name || !age || !color || !type || !owner) {
+          alert("Please fill out all fields.");
+          return;
+        }
+
+        // Hayvon obyektini yaratish
+        const animal = { name, age, color, type, owner };
+        animals.push(animal);
+
+        // Hayvonlarni ekranga chiqarish
+        renderAnimals();
+
+        // Formani tozalash
+        clearForm();
+      }
+
+      function renderAnimals() {
+        container.innerHTML = ""; // Oldingi ma'lumotlarni tozalash
+        animals.forEach((animal) => {
+          const card = document.createElement("div");
+          card.className = "animal-card";
+
+          // Background Image uchun rang va hayvon turi
+          let animalImage = "";
+          if (animal.type === "Cat") {
+            animalImage = `https://via.placeholder.com/100/${animal.color}/ffffff?text=Cat`;
+          } else if (animal.type === "Fish") {
+            animalImage = `https://via.placeholder.com/100/${animal.color}/ffffff?text=Fish`;
+          } else if (animal.type === "Bird") {
+            animalImage = `https://via.placeholder.com/100/${animal.color}/ffffff?text=Bird`;
+          }
+
+          // Kartochka yaratish
+          card.innerHTML = `
+            <div class="animal-image" style="background-image: url('${animalImage}')"></div>
+            <h2>${animal.type}</h2>
+            <p><strong>Name:</strong> ${animal.name}</p>
+            <p><strong>Age:</strong> ${animal.age}</p>
+            <p><strong>Owner:</strong> ${animal.owner}</p>
+          `;
+
+          container.appendChild(card);
+        });
+      }
+
+      function clearForm() {
+        document.getElementById("animalName").value = "";
+        document.getElementById("animalAge").value = "";
+        document.getElementById("animalColor").value = "ff0000";
+        document.getElementById("animalType").value = "Cat";
+        document.getElementById("ownerName").value = "";
+      }
+    </script>
+  </body>
+</html>

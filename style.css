@@ -1,0 +1,66 @@
+body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+        color: #0077cc;
+      }
+
+      .form-container {
+        text-align: center;
+        margin: 20px auto;
+      }
+
+      input, select, button {
+        padding: 10px;
+        margin: 5px;
+        width: 200px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        background-color: #0077cc;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background-color: #005fa3;
+      }
+
+      /* Container flex style */
+      #animal-container {
+        display: flex;
+        flex-wrap: wrap; /* Yonma-yon chiqadi, joy yetmasa pastga tushadi */
+        justify-content: center;
+        gap: 20px; /* Kartalar orasidagi bo'shliq */
+        margin: 20px;
+      }
+
+      .animal-card {
+        width: 250px;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .animal-image {
+        width: 100px;
+        height: 100px;
+        margin: 10px auto;
+        border-radius: 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border: 2px solid #ddd;
+      }

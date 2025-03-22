@@ -4,74 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dynamic Animal Cards</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fa;
-        margin: 0;
-        padding: 0;
-        color: #333;
-      }
-
-      h1 {
-        text-align: center;
-        margin-top: 20px;
-        color: #0077cc;
-      }
-
-      .form-container {
-        text-align: center;
-        margin: 20px auto;
-      }
-
-      input, select, button {
-        padding: 10px;
-        margin: 5px;
-        width: 200px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-
-      button {
-        background-color: #0077cc;
-        color: white;
-        border: none;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-
-      button:hover {
-        background-color: #005fa3;
-      }
-
-      /* Container flex style */
-      #animal-container {
-        display: flex;
-        flex-wrap: wrap; /* Yonma-yon chiqadi, joy yetmasa pastga tushadi */
-        justify-content: center;
-        gap: 20px; /* Kartalar orasidagi bo'shliq */
-        margin: 20px;
-      }
-
-      .animal-card {
-        width: 250px;
-        padding: 20px;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        text-align: center;
-      }
-
-      .animal-image {
-        width: 100px;
-        height: 100px;
-        margin: 10px auto;
-        border-radius: 50%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        border: 2px solid #ddd;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <a
@@ -107,71 +40,7 @@
     <!-- Output Container -->
     <div id="animal-container"></div>
 
-    <script>
-      const animals = [];
-      const container = document.getElementById("animal-container");
+  <script src="script.js"></script>
 
-      function addAnimal() {
-        // Inputlardan qiymatlarni olish
-        const name = document.getElementById("animalName").value;
-        const age = document.getElementById("animalAge").value;
-        const color = document.getElementById("animalColor").value;
-        const type = document.getElementById("animalType").value;
-        const owner = document.getElementById("ownerName").value;
-
-        // Kiritilgan ma'lumotni tekshirish
-        if (!name || !age || !color || !type || !owner) {
-          alert("Please fill out all fields.");
-          return;
-        }
-
-        // Hayvon obyektini yaratish
-        const animal = { name, age, color, type, owner };
-        animals.push(animal);
-
-        // Hayvonlarni ekranga chiqarish
-        renderAnimals();
-
-        // Formani tozalash
-        clearForm();
-      }
-
-      function renderAnimals() {
-        container.innerHTML = ""; // Oldingi ma'lumotlarni tozalash
-        animals.forEach((animal) => {
-          const card = document.createElement("div");
-          card.className = "animal-card";
-
-          // Background Image uchun rang va hayvon turi
-          let animalImage = "";
-          if (animal.type === "Cat") {
-            animalImage = `https://via.placeholder.com/100/${animal.color}/ffffff?text=Cat`;
-          } else if (animal.type === "Fish") {
-            animalImage = `https://via.placeholder.com/100/${animal.color}/ffffff?text=Fish`;
-          } else if (animal.type === "Bird") {
-            animalImage = `https://via.placeholder.com/100/${animal.color}/ffffff?text=Bird`;
-          }
-
-          // Kartochka yaratish
-          card.innerHTML = `
-            <div class="animal-image" style="background-image: url('${animalImage}')"></div>
-            <h2>${animal.type}</h2>
-            <p><strong>Name:</strong> ${animal.name}</p>
-            <p><strong>Age:</strong> ${animal.age}</p>
-            <p><strong>Owner:</strong> ${animal.owner}</p>
-          `;
-
-          container.appendChild(card);
-        });
-      }
-
-      function clearForm() {
-        document.getElementById("animalName").value = "";
-        document.getElementById("animalAge").value = "";
-        document.getElementById("animalColor").value = "ff0000";
-        document.getElementById("animalType").value = "Cat";
-        document.getElementById("ownerName").value = "";
-      }
-    </script>
   </body>
 </html>
